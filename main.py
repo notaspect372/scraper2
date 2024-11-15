@@ -39,7 +39,7 @@ def get_property_urls(base_url, start_page, end_page):
             break
 
         soup = BeautifulSoup(response.content, 'html.parser')
-        page_property_urls = ['https://cm.coinafrique.com' + link.get('href') for link in soup.find_all('a', class_='card-image ad__card-image waves-block waves-light')]
+        page_property_urls = ['https://ci.coinafrique.com' + link.get('href') for link in soup.find_all('a', class_='card-image ad__card-image waves-block waves-light')]
 
         if not page_property_urls:
             print(f"No more property URLs found on page {page}. Stopping.")
@@ -148,6 +148,6 @@ def scrape_multiple_urls(urls, start_page, end_page):
 
 # Example usage
 urls = [
-    "https://cm.coinafrique.com/categorie/immobilier"
+    "https://ci.coinafrique.com/categorie/immobilier"
 ]
 scrape_multiple_urls(urls, start_page=116, end_page=119)
