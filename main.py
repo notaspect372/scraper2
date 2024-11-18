@@ -81,8 +81,13 @@ def scrape_property_details(property_url):
     transaction_type = soup.find('span', class_='status-label').get_text(strip=True)
     
     # Extract details from the name
-    property_type_element = price_element.find('small') if price_element else None
-    property_type = property_type_element.get_text(strip=True) if property_type_element else None
+    property_type = None
+    price_element = soup.find('h5', class_='price')  # Find the h5 tag with class "price"
+    if price_element:
+        # Find the <small> tag inside the <h5> and extract text after '-'
+        small_element = price_element.find('small')
+        if small_element:
+            property_type = small_element.get_text(strip=True).split('-')[-1].strip()
     # Scrape characteristics
     characteristics = []
     property_meta = soup.find('div', class_='property-meta clearfix')
