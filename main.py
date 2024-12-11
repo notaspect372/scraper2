@@ -146,6 +146,6 @@ def scrape_multiple_urls(urls, start_page, end_page):
 
 # Example usage
 urls = [
-    "https://sn.coinafrique.com/categorie/immobilier"
+    "https://sn.coinafrique.com/search?sort_by=last&category=14&price_min=50000"
 ]
 scrape_multiple_urls(urls, start_page=51, end_page=119)
