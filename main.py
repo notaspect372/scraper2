@@ -148,4 +148,4 @@ def scrape_multiple_urls(urls, start_page, end_page):
 urls = [
     "https://sn.coinafrique.com/search?sort_by=last&category=14&price_max=50000"
 ]
-scrape_multiple_urls(urls, start_page=1, end_page=60)
+scrape_multiple_urls(urls, start_page=61, end_page=114)
