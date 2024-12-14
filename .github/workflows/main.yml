@@ -31,5 +31,5 @@ jobs:
     - name: Upload Excel files as artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: senegal
+        name: cameroon
         path: artifacts/*.xlsx
