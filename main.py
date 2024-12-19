@@ -4,10 +4,18 @@ from bs4 import BeautifulSoup
 import json
 import pandas as pd
 from geopy.geocoders import Nominatim
+import re
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }
+
+def clean_text(text):
+    # Replace illegal characters with a space
+    if text:
+        return re.sub(r'[\x00-\x1F\x7F-\x9F]', ' ', text)
+    return text
+
 
 def get_lat_lon(address):
     geolocator = Nominatim(user_agent="my_geocoder_app")  # Change "my_geocoder_app" to something unique
@@ -110,19 +118,18 @@ def scrape_property_data(url):
         latitude, longitude = None, None
 
     property_data = {
-        'name': name,
-        'address': address,
-        'price': price,
-        'area': area,
-        'description': description,
+        'name': clean_text(name),
+        'address': clean_text(address),
+        'price': clean_text(price),
+        'area': clean_text(area),
+        'description': clean_text(description),
         'latitude': latitude,
         'longitude': longitude,
-        'property_type': property_type,
-        'transaction_type': transaction_type,
-        'property_url': url,
-        'characteristics': characteristics
+        'property_type': clean_text(property_type),
+        'transaction_type': clean_text(transaction_type),
+        'property_url': clean_text(url),
+        'characteristics': {clean_text(k): clean_text(v) for k, v in (characteristics or {}).items()}
     }
-
     print(property_data)
     return property_data
 
