@@ -130,7 +130,6 @@ def scrape_property_data(url):
         'property_url': clean_text(url),
         'characteristics': {clean_text(k): clean_text(v) for k, v in (characteristics or {}).items()}
     }
-    print(property_data)
     return property_data
 
 def scrape_multiple_urls(urls, start_page, end_page):
