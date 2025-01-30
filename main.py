@@ -162,7 +162,7 @@ def scrape_properties(base_url):
 
 # List of URLs to scrape
 urls = [
-    "https://real-estate-tanzania.beforward.jp/status/for-sale/",
+    "https://real-estate-tanzania.beforward.jp/status/for-sale",
 
 ]
 
