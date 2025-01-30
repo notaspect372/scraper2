@@ -30,10 +30,16 @@ def extract_characteristics(soup):
     detail_wrap = soup.find('div', class_='detail-wrap')
     if detail_wrap:
         for li in detail_wrap.find_all('li'):
-            label = li.find('strong').get_text(strip=True).rstrip(':')
-            value = li.find('span').get_text(strip=True)
-            characteristics[label] = value
+            strong_tag = li.find('strong')
+            span_tag = li.find('span')
+
+            if strong_tag and span_tag:  # Ensure both elements exist before accessing them
+                label = strong_tag.get_text(strip=True).rstrip(':')
+                value = span_tag.get_text(strip=True)
+                characteristics[label] = value
+
     return characteristics
+
 
 def get_location(geolocator, address, retries=3):
     for i in range(retries):
