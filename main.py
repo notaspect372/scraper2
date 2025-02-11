@@ -75,7 +75,11 @@ def scrape_property_details(url):
                     value = span_tag.text.strip()
                     address_details[key] = value
 
-        sub_address = address_details.get('city', None)
+
+        sub_address = address_details.get('address','-')
+        if sub_address == '-':
+            sub_address = address_details.get('city', None)
+        
 
         description = None
         description_wrap = soup.find('div', class_='property-description-wrap property-section-wrap')
